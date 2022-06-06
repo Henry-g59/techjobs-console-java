@@ -1,8 +1,12 @@
 package org.launchcode.techjobs.console;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+
+
 
 /**
  * Created by LaunchCode
@@ -61,13 +65,14 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
             }
         }
     }
+
 
     // ﻿Returns the key of the selected item from the choices Dictionary
     private static String getUserSelection(String menuHeader, HashMap<String, String> choices) {
@@ -110,7 +115,34 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        /* for(Hashmap job : someJobs) {
+            print******
+            for(Pair pair : job
 
-        System.out.println("printJobs is not implemented yet");
+
+            for(each element in the hashmap){
+                System.out.print(hashmap.key ":" print value
+            }
+        * */
+
+
+
+        if (someJobs.size() == 0) {
+            System.out.println("No Results.");
+
+            return;
+        }
+
+        for(HashMap<String,String> job : someJobs){
+            String printFormat = "\n*****\n";
+
+            for(Map.Entry<String, String> kvPair : job.entrySet()){
+                printFormat+= (kvPair.getKey() + ": " + kvPair.getValue() + "\n");
+            }
+            printFormat+= "*****";
+
+            System.out.println(printFormat);
+        }
+
     }
 }
